@@ -1,8 +1,10 @@
 package main
 
 import (
+	"blog/pkg/controllers/addrecord"
 	"blog/pkg/controllers/auth"
 	"blog/pkg/controllers/registrationuser"
+
 	db "blog/pkg/sqlite"
 
 	"github.com/labstack/echo"
@@ -18,6 +20,7 @@ func main() {
 
 	e.POST("/api/auth/login", auth.Authentication)
 	e.POST("/api/registration", registrationuser.Registration)
+	e.POST("/api/record", addrecord.AddRecord)
 
 	e.Logger.Fatal(e.Start(":9999"))
 }

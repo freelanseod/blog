@@ -20,7 +20,11 @@ func GetDb() *gorm.DB {
 func runMigrations() {
 	db := GetDb()
 
-	// Create Tables
 	db.Exec(tables.CreateUserTable)
+	db.Exec(tables.CreateTagsTable)
+	db.Exec(tables.CreateRecordTable)
+
 	db.Exec(seeds.UserSeed)
+	db.Exec(seeds.TagsSeed)
+	db.Exec(seeds.RecordSeed)
 }
