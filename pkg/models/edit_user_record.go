@@ -23,14 +23,11 @@ func (s *SuccessRecordResponse) EditUserRecord(recordBody UpdateRecordBody) {
 
 	if recordBody.Security == true {
 		updateInfo.Security = 1
-	} else {
-		updateInfo.Security = 0
-	}
-
+	} 
 	copier.Copy(&updateInfo, &recordBody)
 
-	t := time.Now().UTC().String()
-	updated := strings.Split(t, " +0000 UTC")
+	t := time.Now().String()
+	updated := strings.Split(t, " +0300 MSK m=+")
 	updateInfo.UpdatedAt = updated[0]
 
 	var update RecordTable
@@ -45,10 +42,9 @@ func (s *SuccessRecordResponse) EditUserRecord(recordBody UpdateRecordBody) {
 		Raw("select * from record where user_id = $1 and id = $2", recordBody.UserId, recordBody.Id).
 		Find(&checkUpdate)
 
-	if strings.EqualFold(checkUpdate.Subject, recordBody.Subject) {
-		s.Result = "success"
-	} else {
+	if !(strings.EqualFold(checkUpdate.Subject, recordBody.Subject)) {
 		fmt.Println("update wasn't success")
 	}
 
+	s.Result = "success"
 }
