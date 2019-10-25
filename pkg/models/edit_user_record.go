@@ -23,7 +23,7 @@ func (s *SuccessRecordResponse) EditUserRecord(recordBody UpdateRecordBody) {
 
 	if recordBody.Security == true {
 		updateInfo.Security = 1
-	} 
+	}
 	copier.Copy(&updateInfo, &recordBody)
 
 	t := time.Now().String()

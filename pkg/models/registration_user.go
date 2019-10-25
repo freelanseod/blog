@@ -67,8 +67,8 @@ func (u *UserRegistrationResponse) RegistrationUser(registrationRequestBody Regi
 
 		if !(strings.EqualFold(getUserInformation.Email, registrationRequestBody.Email) && strings.EqualFold(getUserInformation.Password, registrationRequestBody.Password)) {
 			u.Result = "insert wasn't success"
-		} 
-		
+		}
+
 		u.Result = "success"
 	}
 

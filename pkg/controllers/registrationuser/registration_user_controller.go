@@ -25,9 +25,9 @@ func Registration(c echo.Context) error {
 		e.Data.ErrorMessage = "invalid_parametr"
 
 		return c.JSON(http.StatusBadRequest, e)
-	} 
-		registration := models.UserRegistrationResponse{}
-		registration.RegistrationUser(user)
+	}
+	registration := models.UserRegistrationResponse{}
+	registration.RegistrationUser(user)
 
-		return c.JSON(http.StatusOK, registration)
+	return c.JSON(http.StatusOK, registration)
 }
