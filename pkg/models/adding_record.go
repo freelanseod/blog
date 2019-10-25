@@ -40,15 +40,13 @@ func (s *SuccessRecordResponse) AddingRecord(recordBody RecordBody) {
 	var insertInfo RecordTable
 	if recordBody.Security == true {
 		insertInfo.Security = 1
-	} else {
-		insertInfo.Security = 0
 	}
 
 	copier.Copy(&insertInfo, &recordBody)
 
-	t := time.Now().UTC().String()
-	created := strings.Split(t, " +0000 UTC")
-	updated := strings.Split(t, " +0000 UTC")
+	t := time.Now().String()
+	created := strings.Split(t, " +0300 MSK m=+")
+	updated := strings.Split(t, " +0300 MSK m=+")
 	insertInfo.CreatedAt = created[0]
 	insertInfo.UpdatedAt = updated[0]
 
@@ -61,10 +59,8 @@ func (s *SuccessRecordResponse) AddingRecord(recordBody RecordBody) {
 		Raw("select * from record where subject = $1 and user_id = $2", recordBody.Subject, recordBody.UserId).
 		Find(&checkInsert)
 
-	if strings.EqualFold(checkInsert.CreatedAt, created[0]) {
-		s.Result = "success"
-	} else {
+	if !(strings.EqualFold(checkInsert.CreatedAt, created[0])) {
 		fmt.Println("insert wasn't successful")
-	}
-
+	} 
+	s.Result = "success"
 }

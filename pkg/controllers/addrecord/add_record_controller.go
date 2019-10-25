@@ -7,11 +7,11 @@ import (
 	"github.com/labstack/echo"
 )
 
-func AddRecord(c echo.Context) (err error) {
+func AddRecord(c echo.Context) error {
 	var requestBody models.RecordBody
 
-	if error := c.Bind(&requestBody); error != nil {
-		return error
+	if err := c.Bind(&requestBody); err != nil {
+		return err
 	}
 
 	makeRecord := models.SuccessRecordResponse{}
