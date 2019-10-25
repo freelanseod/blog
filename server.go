@@ -3,6 +3,7 @@ package main
 import (
 	"blog/pkg/controllers/addrecord"
 	"blog/pkg/controllers/auth"
+	"blog/pkg/controllers/deleterecord"
 	"blog/pkg/controllers/editrecord"
 	"blog/pkg/controllers/registrationuser"
 
@@ -23,6 +24,7 @@ func main() {
 	e.POST("/api/registration", registrationuser.Registration)
 	e.POST("/api/record", addrecord.AddRecord)
 	e.PUT("/api/record", editrecord.EditRecord)
+	e.DELETE("/api/record/:id", deleterecord.DeleteRecordById)
 
 	e.Logger.Fatal(e.Start(":9999"))
 }
