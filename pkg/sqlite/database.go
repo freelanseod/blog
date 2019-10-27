@@ -3,6 +3,7 @@ package sqlite
 import (
 	"blog/pkg/sqlite/seeds"
 	"blog/pkg/sqlite/tables"
+	"database/sql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -15,6 +16,10 @@ func Initialize() {
 
 func GetDb() *gorm.DB {
 	return db
+}
+
+func ScanDbRows(rows *sql.Rows, resultInterface interface{}) {
+	db.ScanRows(rows, resultInterface)
 }
 
 func runMigrations() {
