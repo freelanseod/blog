@@ -6,6 +6,7 @@ import (
 	"blog/pkg/controllers/deleterecord"
 	"blog/pkg/controllers/editrecord"
 	"blog/pkg/controllers/getrecords"
+	"blog/pkg/controllers/getuserrecord"
 	"blog/pkg/controllers/registrationuser"
 
 	db "blog/pkg/sqlite"
@@ -27,6 +28,7 @@ func main() {
 	e.PUT("/api/record", editrecord.EditRecord)
 	e.DELETE("/api/record/:id", deleterecord.DeleteRecordById)
 	e.GET("/api/:id/records", getrecords.GetRecordsByUser)
+	e.GET("/api/:id/records/:recordid", getuserrecord.GetRecordById)
 
 	e.Logger.Fatal(e.Start(":9999"))
 }

@@ -65,11 +65,12 @@ func (u *UserRegistrationResponse) RegistrationUser(registrationRequestBody Regi
 			Raw("select * from user where email = $1", registrationRequestBody.Email).
 			Find(&getUserInformation)
 
+		u.Result = "success"
+
 		if !(strings.EqualFold(getUserInformation.Email, registrationRequestBody.Email) && strings.EqualFold(getUserInformation.Password, registrationRequestBody.Password)) {
 			u.Result = "insert wasn't success"
 		}
 
-		u.Result = "success"
 	}
 
 }
