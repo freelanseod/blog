@@ -62,5 +62,6 @@ func (s *SuccessRecordResponse) AddingRecord(recordBody RecordBody) {
 	if !(strings.EqualFold(checkInsert.CreatedAt, created[0])) {
 		fmt.Println("insert wasn't successful")
 	}
+	
 	s.Result = "success"
 }

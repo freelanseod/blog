@@ -8,6 +8,7 @@ import (
 	"blog/pkg/controllers/getrecords"
 	"blog/pkg/controllers/getuserrecord"
 	"blog/pkg/controllers/registrationuser"
+	"blog/pkg/controllers/addtag"
 
 	db "blog/pkg/sqlite"
 
@@ -29,6 +30,7 @@ func main() {
 	e.DELETE("/api/record/:id", deleterecord.DeleteRecordById)
 	e.GET("/api/:id/records", getrecords.GetRecordsByUser)
 	e.GET("/api/:id/records/:recordid", getuserrecord.GetRecordById)
+	e.POST("/api/add/tag", addtag.AddTag)
 
 	e.Logger.Fatal(e.Start(":9999"))
 }

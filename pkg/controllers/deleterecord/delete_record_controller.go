@@ -12,5 +12,6 @@ func DeleteRecordById(c echo.Context) error {
 
 	deleteUser := models.SuccessRecordResponse{}
 	deleteUser.DeleteUserRecord(id)
+	
 	return c.JSON(http.StatusOK, deleteUser)
 }
