@@ -32,6 +32,4 @@ func runMigrations() {
 	db.Exec(seeds.UserSeed)
 	db.Exec(seeds.TagsSeed)
 	db.Exec(seeds.RecordSeed)
-
-	db.LogMode(true)
 }
